@@ -1,41 +1,5 @@
 <script lang="ts">
-	const dummyData = [
-		{
-			id: 'id',
-			nom: 'Name 1',
-
-			adresse: 'Adresse 1',
-			tele: 'Télé 1'
-		},
-		{
-			id: 'id',
-			nom: 'Name 2',
-
-			adresse: 'Adresse 2',
-			tele: 'Télé 2'
-		},
-		{
-			id: 'id',
-			nom: 'Name 3',
-
-			adresse: 'Adresse 3',
-			tele: 'Télé 3'
-		},
-		{
-			id: 'id',
-			nom: 'Name 4',
-
-			adresse: 'Adresse 4',
-			tele: 'Télé 4'
-		},
-		{
-			id: 'id',
-			nom: 'Name 5',
-
-			adresse: 'Adresse 5',
-			tele: 'Télé 5'
-		}
-	];
+	export let pharmaciesList: any[];
 </script>
 
 <div class="overflow-x-auto">
@@ -50,16 +14,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each dummyData as itemData}
+			{#each pharmaciesList as itemData}
 				<tr>
 					<th />
 					<th>
-						{itemData.id}
+						{itemData._id}
 					</th>
 					<td>
 						{itemData.nom}
 					</td>
-					<td> {itemData.adresse} </td>
+					<td> {itemData.address} </td>
 					<td> {itemData.tele} </td>
 				</tr>
 			{/each}

@@ -1,8 +1,38 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { TableAgent, TableMedecin, TablePharmacie } from '$lib/components';
+	import httpCommun from '$lib/utils/axios-custom';
 
 	$: title = $page.params.slug;
+
+	$: medecinsList = [];
+	$: pharmaciesList = [];
+	$: agentsList = [];
+
+	httpCommun
+		.get('/medecins/all', {})
+		.then((res) => {
+			medecinsList = res.data;
+		})
+		.catch((er) => {
+			console.error('er: ', er);
+		});
+	httpCommun
+		.get('/agents/all', {})
+		.then((res) => {
+			agentsList = res.data;
+		})
+		.catch((er) => {
+			console.error('er: ', er);
+		});
+	httpCommun
+		.get('/pharmacies/all', {})
+		.then((res) => {
+			pharmaciesList = res.data;
+		})
+		.catch((er) => {
+			console.error('er: ', er);
+		});
 </script>
 
 <svelte:head>
@@ -40,10 +70,10 @@
 
 <main class="px-12">
 	{#if title == 'Agent'}
-		<TableAgent />
+		<TableAgent {agentsList} />
 	{:else if title == 'Medecin'}
-		<TableMedecin />
+		<TableMedecin {medecinsList} />
 	{:else}
-		<TablePharmacie />
+		<TablePharmacie {pharmaciesList} />
 	{/if}
 </main>
